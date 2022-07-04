@@ -1,0 +1,8 @@
+FROM mysql/mysql-server:8.0-aarch64
+
+ENV MYSQL_ROOT_PASSWORD rootpass
+ENV MYSQL_DATABASE gsheet
+ENV MYSQL_USER mysql
+ENV MYSQL_PASSWORD mysql
+
+COPY ./config/my.conf /etc/mysql/conf.d/my.cnf

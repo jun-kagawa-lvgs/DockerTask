@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db:
+    container_name: db
+    build:
+      context: .
+      dockerfile: ./Dockerfile-mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - type: bind
+        source: ./db-store
+        target: /var/lib/mysql
+        volume:
+          nocopy: true
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./Dockerfile-php
+    ports:
+      - '8080:80'
+    volumes:
+      - ./src:/var/www/laravel_docker
+      - ./apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+    depends_on:
+      - db
