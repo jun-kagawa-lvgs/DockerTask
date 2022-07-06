@@ -25,11 +25,10 @@ class PokemonController extends Controller
         $values = $result->getValues();
         foreach($values as $row) {
             $pokemon = new Pokemon();
-            $pokemon->create([
-                'id' => $row[0],
-                'name' => $row[1],
-                'flavor_text' => $row[2],
-            ]);
+            $pokemon->updateOrCreate(
+                ['id' => $row[0]],
+                ['id' => $row[0], 'name' => $row[1], 'flavor_text' => $row[2]],
+            );  
         }
         return 'done';
     }
