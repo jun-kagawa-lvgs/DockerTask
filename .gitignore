@@ -1,3 +1,4 @@
 db-store
 test.py
 gsheet-*.json
+.venv
