@@ -14,12 +14,6 @@ use App\Http\Controllers\PokemonController;
 |
 */
 
-Route::get('/get', function () {
-    return view('welcome');
-});
 // Route::get('/sheet_get', [PokemonController::class, 'get_sheet_data']);
 Route::get('/sheet_set', [PokemonController::class, 'get_sheet_data']);
-Route::get('/get', [PokemonController::class, 'get']);
-Route::get('/test', function (){
-    return view('index', ['name' => 'James']);
-});
+Route::get('/', [PokemonController::class, 'get']);
