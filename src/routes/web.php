@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PokemonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/get', function () {
     return view('welcome');
+});
+// Route::get('/sheet_get', [PokemonController::class, 'get_sheet_data']);
+Route::get('/sheet_set', [PokemonController::class, 'get_sheet_data']);
+Route::get('/get', [PokemonController::class, 'get']);
+Route::get('/test', function (){
+    return view('index', ['name' => 'James']);
 });
