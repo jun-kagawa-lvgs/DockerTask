@@ -7,7 +7,7 @@ on:
         type: boolean
         required: true
     secrets:
-      slack_webhoo_url:
+      slack_webhook_url:
         description: webhook url
         required: true
 
