@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v3.4.1
         with:
           node-version: 18
-      - run: cat t.py
+      - run: cat t.y
       
   notify:
     needs: Explore-GitHub-Actions
