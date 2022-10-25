@@ -18,7 +18,7 @@ jobs:
             {
               "attachments": [
                 {
-                  "color": "#008000",
+                  "color": "good",
                   "blocks": [
                     {
                       "type": "section",
@@ -43,7 +43,7 @@ jobs:
             {
               "attachments": [
                 {
-                  "color": "#dc143c",
+                  "color": "danger",
                   "blocks": [
                     {
                       "type": "section",
