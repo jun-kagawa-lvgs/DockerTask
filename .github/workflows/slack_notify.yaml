@@ -3,14 +3,20 @@ on:
   workflow_call:
     inputs:
       success:
-        descriptin: status code
-        type: integer
-        required: ture
+        description: status code
+        type: boolean
+        required: true
+    secrets:
+      slack_webhoo_url:
+        description: webhook url
+        required: true
 
 jobs:
   slack_notify:
-    - name: Notify slack SUCCESS
-      if: ${{ inputs.success == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify slack SUCCESS
+        if: ${{ inputs.success == true }}
         uses: slackapi/slack-github-action@v1.17.0
         with:
           payload: |
