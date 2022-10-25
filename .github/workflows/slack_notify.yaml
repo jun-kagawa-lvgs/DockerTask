@@ -1,11 +1,6 @@
 name: slack notify
 on:
   workflow_call:
-    inputs:
-      success:
-        description: status code
-        type: string
-        required: true
     secrets:
       slack_webhook_url:
         description: webhook url
@@ -16,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify slack SUCCESS
-        if: ${{ inputs.success == true }}
+        if: ${{ success() }}
         uses: slackapi/slack-github-action@v1.17.0
         with:
           payload: |
@@ -41,7 +36,7 @@ jobs:
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
       - name: Notify slack FAILURE
-        if: ${{ inputs.success == false }}
+        if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.17.0
         with:
           payload: |
