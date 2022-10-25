@@ -1,0 +1,60 @@
+name: slack notify
+on:
+  workflow_call:
+    inputs:
+      success:
+        descriptin: status code
+        type: integer
+        required: ture
+
+jobs:
+  slack_notify:
+    - name: Notify slack SUCCESS
+      if: ${{ inputs.success == true }}
+        uses: slackapi/slack-github-action@v1.17.0
+        with:
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "#008000",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "engine-frontend deploy: SUCCESS\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+      - name: Notify slack FAILURE
+        if: ${{ inputs.success == false }}
+        uses: slackapi/slack-github-action@v1.17.0
+        with:
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "#dc143c",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "engine-frontend deploy: FAILURE\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
