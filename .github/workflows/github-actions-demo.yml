@@ -24,7 +24,7 @@ jobs:
     needs: Explore-GitHub-Actions
     uses: jun-kagawa-lvgs/DockerTask/.github/workflows/slack_notify.yaml@master
     with:
-      success: ${{ success() }}
+      success: success()
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
     
