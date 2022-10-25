@@ -19,4 +19,15 @@ jobs:
         with:
           node-version: 18
       - run: cat t.py
+      
+  notify:
+    needs: Explore-GitHub-Actions
+    uses: jun-kagawa-lvgs/DockerTask/.github/workflows/slack_notify.yaml@master
+    with:
+      success: ${{ success() }}
+    secrets:
+      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+    
+      
+  
 
