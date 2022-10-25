@@ -4,7 +4,7 @@ on:
     inputs:
       success:
         description: status code
-        type: boolean
+        type: string
         required: true
     secrets:
       slack_webhook_url:
